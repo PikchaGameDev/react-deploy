@@ -8,7 +8,7 @@ function HeaderComponent() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="*"
+          path="/"
           element={
             <header>
               <h1 className={styles.example}>Hello React</h1>
