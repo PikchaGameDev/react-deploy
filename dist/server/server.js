@@ -97,10 +97,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(__webpack_require__(1));
 var server_1 = __importDefault(__webpack_require__(2));
 var Header_tsx_1 = __webpack_require__(3);
-var indexTemplate_1 = __webpack_require__(8);
-var cors_1 = __importDefault(__webpack_require__(9));
-var compression_1 = __importDefault(__webpack_require__(10));
-var helmet_1 = __importDefault(__webpack_require__(11));
+var indexTemplate_1 = __webpack_require__(7);
+var cors_1 = __importDefault(__webpack_require__(8));
+var compression_1 = __importDefault(__webpack_require__(9));
+var helmet_1 = __importDefault(__webpack_require__(10));
 var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use((0, compression_1.default)());
@@ -165,13 +165,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Header = void 0;
 var root_1 = __webpack_require__(4);
 var React = __importStar(__webpack_require__(5));
-var react_router_dom_1 = __webpack_require__(6);
-var header_css_1 = __importDefault(__webpack_require__(7));
+var header_css_1 = __importDefault(__webpack_require__(6));
 function HeaderComponent() {
-    return (React.createElement(react_router_dom_1.BrowserRouter, null,
-        React.createElement(react_router_dom_1.Routes, null,
-            React.createElement(react_router_dom_1.Route, { path: "/", element: React.createElement("header", null,
-                    React.createElement("h1", { className: header_css_1.default.example }, "Hello React")) }))));
+    return (React.createElement("header", null,
+        React.createElement("h1", { className: header_css_1.default.example }, "Hello React")));
 }
 exports.Header = (0, root_1.hot)(HeaderComponent);
 
@@ -192,12 +189,6 @@ module.exports = require("react");
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
 // Exports
 module.exports = {
 	"example": "header__example--QgiVa"
@@ -205,7 +196,7 @@ module.exports = {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -217,19 +208,19 @@ exports.indexTemplate = indexTemplate;
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("compression");
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("helmet");
