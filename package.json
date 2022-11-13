@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "predeploy": "npm run build:dev",
     "start": "cross-env NODE_ENV=production node ./dist/server/server.js",
