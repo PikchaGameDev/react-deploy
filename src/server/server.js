@@ -4,11 +4,13 @@ import { Header } from "../shared/Header.tsx";
 import { indexTemplate } from "./indexTemplate";
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 app.use("/static", express.static("./dist/client"));
 app.get("/", (req, res) => {
   res.send(indexTemplate(ReactDOM.renderToString(Header())));
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("server started on port http://localhost:3000");
 });
