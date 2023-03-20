@@ -1,27 +1,43 @@
 import express from "express";
+import React from "react";
 import ReactDOM from "react-dom/server";
-import { Header } from "../shared/Header.tsx";
-import { indexTemplate } from "./indexTemplate";
-import cors from "cors";
-import compression from "compression";
-import helmet from "helmet";
+import { indexHtmlTemplate } from "./indexTemplate";
+import { App } from "../shared/App";
+import axios from "axios";
 
 const app = express();
 
-app.use(cors());
-app.use(compression());
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-    crossOriginEmbedderPolicy: false,
-  })
-);
-
+// По URL '/static' будут доступны все файлы, которые лежат в папке 'dist/client'
 app.use("/static", express.static("./dist/client"));
+
 app.get("/", (req, res) => {
-  res.send(indexTemplate(ReactDOM.renderToString(Header())));
+  res.send(indexHtmlTemplate(ReactDOM.renderToString(<App />)));
 });
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log("server started on port http://localhost:3000");
+app.get("/auth", (req, res) => {
+  axios
+    .post(
+      "https://www.reddit.com/api/v1/access_token",
+      `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+      {
+        auth: {
+          username: process.env.CLIENT_ID,
+          password: "V8i-AW5b7HL4Hyl8-0K33g34xIvkaQ",
+        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      }
+    )
+    .then(({ data }) => {
+      res.send(
+        indexHtmlTemplate(
+          ReactDOM.renderToString(<App />),
+          data["access_token"]
+        )
+      );
+    })
+    .catch(console.log);
+});
+
+app.listen(3000, () => {
+  console.log("Server started on http://localhost:3000");
 });

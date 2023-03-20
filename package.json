@@ -8,12 +8,10 @@
     "node": "16.x"
   },
   "scripts": {
-    "predeploy": "npm run build:dev",
-    "start": "cross-env NODE_ENV=production node ./dist/server/server.js",
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development node ./bin/dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development CLIENT_ID=1fY8XELTy63quSYPXcab0g node ./bin/dev.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +19,8 @@
     "@hot-loader/react-dom": "^17.0.1",
     "@types/jest": "^28.1.6",
     "@types/react": "^17.0.50",
+    "axios": "^1.3.4",
+    "classnames": "^2.3.2",
     "clean-webpack-plugin": "^4.0.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
